@@ -14,20 +14,12 @@ function validAnagram(s, t){
 
   for(let i = 0; i < s.length; i++){
     let currentLetter = s.charAt(i);
-    if(!sLetters[currentLetter]){
-      sLetters[currentLetter] = 1;
-    } else {
-      sLetters[currentLetter]++;
-    }
+    sLetters[currentLetter] ? sLetters[currentLetter]++ : sLetters[currentLetter] = 1;
   }
 
   for(let j = 0; j < t.length; j++){
     let currentLetter = t.charAt(j);
-    if(!tLetters[currentLetter]){
-      tLetters[currentLetter] = 1;
-    } else {
-      tLetters[currentLetter]++;
-    }
+    tLetters[currentLetter] ? tLetters[currentLetter]++ : tLetters[currentLetter] = 1;
   }
 
   for(let key in sLetters){
