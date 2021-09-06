@@ -31,11 +31,18 @@ function intersectionNums(nums1, nums2){
     }
   }
 
-  nums1Map.forEach((value, key) => {
-    if(nums2Map.has(key)){
-      intersection.push(parseInt(key));
+  for(let num of nums1Map.keys()){
+    if(nums2Map.has(num)){
+      intersection.push(num);
     }
-  });
+  }
+
+  //could use built in forEach loop to iterate
+  // nums1Map.forEach((value, key) => {
+  //   if(nums2Map.has(key)){
+  //     intersection.push(parseInt(key));
+  //   }
+  // });
 
   return intersection;
 }
