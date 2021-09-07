@@ -8,41 +8,20 @@
 
 function intersectionNums(nums1, nums2){
   let nums1Map = new Map();
-  let nums2Map = new Map();
   let intersection = [];
 
   for(let i = 0; i < nums1.length; i++){
     let currentNum = nums1[i];
-    if(nums1Map.has(currentNum)){
-      let currentVal = nums1Map.get(currentNum);
-      nums1Map.set(currentNum, ++currentVal);
-    } else {
-      nums1Map.set(currentNum, 1);
-    }
+    nums1Map.set(currentNum, 1);
   }
 
   for(let j = 0; j < nums2.length; j++){
     let currentNum = nums2[j];
-    if(nums2Map.has(currentNum)){
-      let currentVal = nums2Map.get(currentNum);
-      nums2Map.set(currentNum, ++currentVal);
-    } else {
-      nums2Map.set(currentNum, 1);
+    if(nums1Map.has(currentNum)){
+      intersection.push(currentNum);
+      nums1Map.delete(currentNum);
     }
   }
-
-  for(let num of nums1Map.keys()){
-    if(nums2Map.has(num)){
-      intersection.push(num);
-    }
-  }
-
-  //could use built in forEach loop to iterate
-  // nums1Map.forEach((value, key) => {
-  //   if(nums2Map.has(key)){
-  //     intersection.push(parseInt(key));
-  //   }
-  // });
 
   return intersection;
 }
@@ -50,36 +29,3 @@ function intersectionNums(nums1, nums2){
 console.log(intersectionNums([2, 4, 4, 2], [2,4]));
 console.log(intersectionNums([1, 2, 3, 3], [3,3]));
 console.log(intersectionNums([2, 4, 6, 8], [1, 3, 5, 7]));
-
-//With object as "map"
-// function intersectionNums(nums1, nums2){
-//   let nums1Map = {};
-//   let nums2Map = {};
-//   let intersection = [];
-
-//   for(let i = 0; i < nums1.length; i++){
-//     let currentNum = nums1[i];
-//     if(nums1Map[currentNum]){
-//       nums1Map[currentNum]++;
-//     } else {
-//       nums1Map[currentNum] = 1;
-//     }
-//   }
-
-//   for(let j = 0; j < nums2.length; j++){
-//     let currentNum = nums2[j];
-//     if(nums2Map[currentNum]){
-//       nums2Map[currentNum]++;
-//     } else {
-//       nums2Map[currentNum] = 1;
-//     }
-//   }
-  
-//   for(let key in nums1Map){
-//     if(nums2Map[key]){
-//       intersection.push(parseInt(key));
-//     }
-//   }
-
-//   return intersection;
-// }
