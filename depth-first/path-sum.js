@@ -29,6 +29,32 @@ function hasPathSum(root, target, sum){
   }
 }
 
+function pathSumIterative(root, target){
+  if(!root || root === null){
+    return false;
+  }
+
+  const nodes = [root];
+  const values = [root.val];
+
+  while(nodes.length > 0){
+    const current = nodes.shift();
+    const sumValue = values.shift();
+    if(current.left === null && current.right === null && sumValue === target){
+      return true;
+    }
+    if(current.left !== null){
+      nodes.push(current.left);
+      values.push(sumValue + current.left.val);
+    }
+    if(current.right !== null){
+      nodes.push(current.right);
+      values.push(sumValue + current.right.val);
+    }
+  }
+  return false;
+}
+
 const tree = new Tree();
 tree.root = new TreeNode(1);
 tree.root.left = new TreeNode(5);
@@ -37,4 +63,4 @@ tree.root.left.left = new TreeNode(1);
 tree.root.right.left = new TreeNode(12);
 tree.root.right.right = new TreeNode(29);
 
-console.log(pathSum(tree.root, 15));
+console.log(pathSumIterative(tree.root, 15));
